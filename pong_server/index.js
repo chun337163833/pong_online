@@ -5,13 +5,13 @@ var io = require('socket.io')(http);
 
 var list = {};
 
-app.use(express.static('/root/pong_server'));
+app.use(express.static('.'));
 io.on('connection', function(socket) {
-  //console.log('connected');
+  console.log('connected');
   var code;
   var oppId;
   socket.on('disconnect', function() {
-    //console.log('disconnected');
+    console.log('disconnected');
     if (code) {
       if (list[code]) {
 	if (list[code].length == 2) {
@@ -22,7 +22,7 @@ io.on('connection', function(socket) {
     }
   });
   socket.on('login', function(msg) {
-    //console.log('login: ' + msg);
+    console.log('login: ' + msg);
     if (list[msg]) {
       if (list[msg].length === 1) {
 	code = msg;
@@ -61,4 +61,4 @@ io.on('connection', function(socket) {
     }
   });
 });
-http.listen(8080);
+http.listen(8081);

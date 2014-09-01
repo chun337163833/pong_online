@@ -19,12 +19,20 @@ pong.start = function() {
 	
 	var scene = new lime.Scene(),
 	    layer = new lime.Layer();
-
-	var input = document.createElement('input');
-	input.setAttribute('id', 'code');
-	input.setAttribute('placeholder', 'input code');
-	input.setAttribute('style', 'width: 100%;');
-	scene.appendChild(input);
+	
+	var textarea = document.createElement('input');
+	textarea.setAttribute('id', 'code');
+	textarea.setAttribute('placeholder', 'input code');
+	textarea.setAttribute('style', 'width: 100%;');
+	textarea.setAttribute('type', 'text');
+	//input.onclick = function() {
+	//  input.focus();
+	//}
+	//layer.appendChild(input);
+	goog.events.listen(textarea, ['mouseup', 'touchend'], function(e) {
+	  textarea.focus();
+	});
+	scene.appendChild(textarea);
 
 		var btn = new lime.GlossyButton('START').setSize(100, 40).setPosition(150, 100);
 		goog.events.listen(btn, 'click', function() {
@@ -50,7 +58,7 @@ pong.start = function() {
 		    newScene.appendChild(newLayer);
 		    pong.director.replaceScene(newScene);
 		  });
-		  socket.emit('login', input.value);
+		  socket.emit('login', textarea.value);
 		});
 		layer.appendChild(btn);
 
@@ -77,7 +85,6 @@ pong.start = function() {
 	  newScene.appendChild(newLayer);
 	  pong.director.replaceScene(newScene);
 	});
-
 
 };
 
