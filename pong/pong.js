@@ -36,6 +36,11 @@ pong.start = function() {
 
 		var btn = new lime.GlossyButton('START').setSize(100, 40).setPosition(150, 100);
 		goog.events.listen(btn, 'click', function() {
+		  if (textarea.value == '') {
+		    alert('input code');
+		    textarea.focus();
+		    return;
+		  }
 		  socket.on('wait', function(msg) {
 		    var newLayer = new lime.Layer();
 		    var newScene = new lime.Scene();
