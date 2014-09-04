@@ -43,12 +43,12 @@ io.on('connection', function(socket) {
   });
   socket.on('ball', function(msg) {
     if (list[code]) {
-      list[code][oppId].emit('ball', msg);
+      list[code][oppId].volatile.emit('ball', msg);
     }
   });
   socket.on('pos', function(msg) {
     if (list[code]) {
-      list[code][oppId].emit('pos', msg);
+      list[code][oppId].volatile.emit('pos', msg);
     }
   });
   socket.on('end', function(msg) {
